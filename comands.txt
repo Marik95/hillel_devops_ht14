@@ -1,0 +1,22 @@
+## at first we need to create a single-node swarm on the current node
+docker swarm init
+
+______________________________________________
+
+## Then, create secrets by next commands
+	
+echo "rootpass" | docker secret create wp-root-pass -
+echo "test_user" | docker secret create wp-user -
+echo "userpass" | docker secret create wp-user-pass -
+echo "test_db" | docker secret create wp-db -
+
+##We also can lsit our secrets
+docker secret ls
+_______________________________________________
+
+## Next step, run stack deploy service
+docker stack deploy -c docker-compose.yml manual_name
+_________________________________________
+
+##Check running service
+docker service ps
